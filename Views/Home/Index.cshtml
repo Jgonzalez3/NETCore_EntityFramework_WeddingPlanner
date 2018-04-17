@@ -1,0 +1,87 @@
+@model WeddingPlanner.Models.RegisterViewModel
+<div class="container w-50">
+    <form asp-controller="Home" asp-action="register" method="POST">
+        <div class="row">
+            <div class="col">
+                <h1>Register</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>First Name: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="firstname"><span asp-validation-for="firstname"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Last Name: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="lastname"><span asp-validation-for="lastname"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Email: </span>
+            </div>
+            <div class="col">
+                <input type="email" name="email"><span asp-validation-for="email">@TempData["emailused"]</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Password: </span>
+            </div>
+            <div class="col">
+                <input type="password" name="password"><span asp-validation-for="password"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Password Confirm:</span>
+            </div>
+            <div class="col">
+                <input type="password" name="confirmpassword"><span asp-validation-for="confirmpassword"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <button type="submit">Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container w-50">
+    <div class="row">
+        <div class="col">
+            <h1>Login</h1>
+        </div>
+    </div>
+    <form asp-controller="Home" asp-action="login" method="POST">
+        <div class="row">
+            <div class="col">
+                <span>Email: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="loginemail"><span>@TempData["Invalidemail"]</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Password: </span>
+            </div>
+            <div class="col">
+                <input type="password" name="loginpassword"><span>@TempData["InvalidPW"]</span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <button type="submit">Log In</button>
+            </div>
+        </div>
+    </form>
+</div>

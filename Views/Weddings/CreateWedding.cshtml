@@ -1,0 +1,70 @@
+@model WeddingPlanner.Models.CreateWeddingViewModel
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WeddingPlanner</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Weddings" asp-action="DisplayDashboard">Dashboard</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Plan Your Wedding</h1>
+            <span>@TempData["weddingcreated"]</span>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <form asp-controller="Weddings" asp-action="addwedding" method="POST">
+        <div class="row">
+            <div class="col">
+                <span>Wedder One: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="wedderone"><span asp-validation-for="wedderone"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Wedder Two: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="weddertwo"><span asp-validation-for="weddertwo"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Wedding Date: </span>
+            </div>
+            <div class="col">
+                <input type="date" name="date"><span asp-validation-for="date"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span>Wedding Address: </span>
+            </div>
+            <div class="col">
+                <input type="text" name="address"><span asp-validation-for="address"></span>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <button type="submit">Create</button>
+            </div>
+        </div>
+    </form>
+</div>

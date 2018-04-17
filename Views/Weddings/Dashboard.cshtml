@@ -1,0 +1,79 @@
+@model WeddingPlanner.Models.Wedding
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">WeddingPlanner</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a asp-area="" asp-controller="Weddings" asp-action="CreateWedding">Create Wedding</a></li>
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Welcome to the Wedding Planner</h1>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <th class="col">Wedding</th>
+            <th class="col">Date</th>
+            <th class="col">Guest Count</th>
+            <th class="col">Action</th>
+        </thead>
+        <tbody>
+            @foreach(Wedding wedding in @ViewBag.Weddings)
+            {
+            <tr>
+                <td class="col">
+                <form action="viewguest" method="POST">
+                    <input type="hidden" name="weddingid" value=@wedding.WeddingId>
+                    <button style="background: none; border: none; color: blue;">@wedding.wedderone & @wedding.weddertwo</button>
+                </form></td>
+                <td class="col">@wedding.date.ToString("MMM dd yyyy")</td>
+                <td class="col">@wedding.guests.Count()</td>
+                @if(@wedding.UserId == @ViewBag.Userid)
+                {
+                    <td class="col">
+                        <form action="/deletewedding" method="POST">
+                            <input type="hidden" name="weddingid" value=@wedding.WeddingId>
+                            <button class="btn-danger">Delete</button>
+                        </form>
+                    </td>
+                }
+                else if(@wedding.guests.Exists(x=>x.UserId ==@ViewBag.Userid))
+                {
+                    <td class="col">
+                        <form action="unrsvp" method="POST">
+                            <input type="hidden" name="weddingid" value=@wedding.WeddingId>
+                            <button class="btn-warning">Un-RSVP</button>
+                        </form>
+                    </td>
+                }
+                else
+                {
+                    <td class="col">
+                        <form action="/rsvp" method="POST">
+                            <input type="hidden" name="weddingid" value=@wedding.WeddingId>
+                            <button class="btn-success">RSVP</button>
+                        </form>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
