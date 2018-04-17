@@ -26,8 +26,6 @@ namespace WeddingPlanner.Controllers{
             }
             List<Wedding> AllWeddings = _context.Weddings.Include(Wedding=>Wedding.guests).ThenInclude(Guest=>Guest.User).ToList();
             ViewBag.Weddings = AllWeddings;
-            // List<Guest> Allguests = _context.Guests.Include(Guest=>Guest.Wedding).Include(Guest=>Guest.User).ToList();
-            // ViewBag.Guests = Allguests;
             return View("Dashboard");
         }
         [HttpGet]
@@ -63,6 +61,10 @@ namespace WeddingPlanner.Controllers{
         [Route("/addwedding")]
         public IActionResult AddWedding(CreateWeddingViewModel model, Wedding NewWedding){
             if(ModelState.IsValid){
+                if(model.date < DateTime.Today){
+                    TempData["InvalidDate"] = "Wedding Date Must be in the Future";
+                    return View("CreateWedding");
+                }
                 int? UserId = HttpContext.Session.GetInt32("userid");
                 List<Wedding> AllWeddings = _context.Weddings.Include(Wedding=>Wedding.User).Where(Wedding=>Wedding.UserId == UserId).ToList();
                 if(AllWeddings.Count > 0){
