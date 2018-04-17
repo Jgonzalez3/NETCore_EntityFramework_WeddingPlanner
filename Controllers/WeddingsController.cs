@@ -50,7 +50,6 @@ namespace WeddingPlanner.Controllers{
             Console.WriteLine(WeddingID);
             Wedding Wed = _context.Weddings.SingleOrDefault(Wedding=> Wedding.WeddingId == WeddingID);
             Console.WriteLine("Wedding query", Wed);
-            // Console.WriteLine("Wedder name", Wed.wedderone);
             ViewBag.Wed = Wed;
             List<Guest> Allguests = _context.Guests.Include(Guest=>Guest.User).Include(Guest=>Guest.Wedding).Where(Guest=>Guest.WeddingId == WeddingID).ToList();
             ViewBag.Guests = Allguests;
