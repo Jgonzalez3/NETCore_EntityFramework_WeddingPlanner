@@ -72,7 +72,7 @@ namespace WeddingPlanner.Controllers{
                 NewWedding.UserId = (int)UserId;
                 _context.Weddings.Add(NewWedding);
                 _context.SaveChanges();
-                Wedding Wed = _context.Weddings.SingleOrDefault(Wedding=> Wedding.wedderone == NewWedding.wedderone);
+                Wedding Wed = _context.Weddings.Where(x=> x.weddertwo == NewWedding.weddertwo).SingleOrDefault(Wedding=> Wedding.wedderone == NewWedding.wedderone);
                 HttpContext.Session.SetInt32("weddingid",(int)Wed.WeddingId);
                 int? WeddingId = HttpContext.Session.GetInt32("weddingid");
                 return RedirectToAction("DisplayGuestList", new{WeddingID = WeddingId});

@@ -15,7 +15,7 @@ namespace WeddingPlanner.Models{
         [RegularExpression(@"^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$")]
         public string email {get;set;}
         [Required]
-        [MinLength(8, ErrorMessage= "Password must have at least 8 letters")]
+        [MinLength(8, ErrorMessage= "Password must have at least 8 characters")]
         public string password {get;set;}
         [Compare(nameof(password),ErrorMessage= "Password Confirmation does not match Password")]
         public string confirmpassword {get;set;}
