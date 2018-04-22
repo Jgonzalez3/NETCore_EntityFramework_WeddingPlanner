@@ -13,8 +13,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Weddings" asp-action="CreateWedding">Create Wedding</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
             </ul>
+            <div class="nav navbar-nav pull-right">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+            </div>
         </div>
     </div>
 </nav>
@@ -78,7 +80,7 @@
 </div>
 <div class="row">
     <div class="col">
-        <button class="btn-primary"><a href="/CreateWedding" class="text-white bg-primary">Create Wedding</a></button>
+        <a class="btn btn-primary" role="button" href="/CreateWedding" class="text-white bg-primary">Create Wedding</a></button>
     </div>
 </div>
 

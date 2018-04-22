@@ -1,5 +1,5 @@
 @model WeddingPlanner.Models.RegisterViewModel
-<div class="container w-50">
+<div class="col-sm-6 col-md-6">
     <form asp-controller="Home" asp-action="register" method="POST">
         <div class="row">
             <div class="col">
@@ -7,54 +7,49 @@
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <span>First Name: </span>
-            </div>
-            <div class="col">
-                <input type="text" name="firstname"><span asp-validation-for="firstname"></span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span>Last Name: </span>
-            </div>
-            <div class="col">
-                <input type="text" name="lastname"><span asp-validation-for="lastname"></span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>First Name: </h4>
+                <p><span class="text-danger" asp-validation-for="firstname"></span></p>
+                <input class="form-control" type="text" name="firstname">
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <span>Email: </span>
-            </div>
-            <div class="col">
-                <input type="email" name="email"><span asp-validation-for="email">@TempData["emailused"]</span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span>Password: </span>
-            </div>
-            <div class="col">
-                <input type="password" name="password"><span asp-validation-for="password"></span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Last Name: </h4>
+                <p class="text-danger"><span asp-validation-for="lastname"></span></p>
+                <input class="form-control" type="text" name="lastname">
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <span>Password Confirm:</span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Email: </h4>
+                <p><span class="text-danger" asp-validation-for="email">@TempData["emailused"]</span></p>
+                <input class="form-control" type="email" name="email">
             </div>
-            <div class="col">
-                <input type="password" name="confirmpassword"><span asp-validation-for="confirmpassword"></span>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Password: </h4>
+                <p><span class="text-danger" asp-validation-for="password"></span></p>
+                <input class="form-control" type="password" name="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Password Confirm:</h4>
+                <p><span class="text-danger" asp-validation-for="confirmpassword"></span></p>
+                <input class="form-control" type="password" name="confirmpassword">
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col">
-                <button type="submit">Register</button>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <button class="btn btn-primary pull-right" type="submit">Register</button>
             </div>
         </div>
     </form>
 </div>
-<div class="container w-50">
+<div class="col-sm-6 col-md-6">
     <div class="row">
         <div class="col">
             <h1>Login</h1>
@@ -62,25 +57,24 @@
     </div>
     <form asp-controller="Home" asp-action="login" method="POST">
         <div class="row">
-            <div class="col">
-                <span>Email: </span>
-            </div>
-            <div class="col">
-                <input type="text" name="loginemail"><span>@TempData["Invalidemail"]</span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Email: </h4>
+                <p><span class="text-danger">@TempData["Invalidemail"]</span></p>
+                <input class="form-control" type="text" name="loginemail">
             </div>
         </div>
         <div class="row">
-            <div class="col">
-                <span>Password: </span>
-            </div>
-            <div class="col">
-                <input type="password" name="loginpassword"><span>@TempData["InvalidPW"]</span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <h4>Password: </h4>
+                <p><span class="text-danger">@TempData["InvalidPW"]</span></p>
+                <input class="form-control" type="password" name="loginpassword">
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col">
-                <button type="submit">Log In</button>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <button class="btn btn-primary pull-right" type="submit">Log In</button>
+                <br>
             </div>
         </div>
     </form>

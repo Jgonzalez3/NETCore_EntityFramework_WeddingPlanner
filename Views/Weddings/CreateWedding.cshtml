@@ -13,8 +13,10 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li><a asp-area="" asp-controller="Weddings" asp-action="DisplayDashboard">Dashboard</a></li>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
             </ul>
+            <div class="nav navbar-nav pull-right">
+                <li><a asp-area="" asp-controller="Home" asp-action="Index">Logout</a></li>
+            </div>
         </div>
     </div>
 </nav>
@@ -22,8 +24,6 @@
     <div class="row">
         <div class="col">
             <h1>Plan Your Wedding</h1>
-            <span>@TempData["weddingcreated"]</span>
-            <span>@TempData["InvalidDate"]</span>
         </div>
     </div>
 </div>
@@ -31,40 +31,41 @@
     <form asp-controller="Weddings" asp-action="addwedding" method="POST">
         <div class="row">
             <div class="col">
-                <span>Wedder One: </span>
+                <h3>Wedder One: </h3>
             </div>
-            <div class="col">
-                <input type="text" name="wedderone"><span asp-validation-for="wedderone"></span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <span>Wedder Two: </span>
-            </div>
-            <div class="col">
-                <input type="text" name="weddertwo"><span asp-validation-for="weddertwo"></span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <input class="form-control" type="text" name="wedderone"><span class="text-danger" asp-validation-for="wedderone"></span>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <span>Wedding Date: </span>
+                <h3>Wedder Two: </h3>
             </div>
-            <div class="col">
-                <input type="date" name="date"><span asp-validation-for="date"></span>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <input class="form-control" type="text" name="weddertwo"><span class="text-danger" asp-validation-for="weddertwo"></span>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <span>Wedding Address: </span>
+                <h3>Wedding Date: </h3>
+                <p class="text-danger">@TempData["InvalidDate"]</span></p>
             </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <input class="form-control" type="date" name="date"><span asp-validation-for="date"></span>
+            </div>
+        </div>
+        <div class="row">
             <div class="col">
-                <input type="text" name="address"><span asp-validation-for="address"></span>
+                <h3>Wedding Address: </h3>
+            </div>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <input class="form-control" type="text" name="address"><span class="text-danger" asp-validation-for="address"></span>
             </div>
         </div>
         <br>
         <div class="row">
-            <div class="col">
-                <button type="submit">Create</button>
+            <div class="col-xs-10 col-sm-8 col-md-6">
+                <button class="btn btn-success pull-right" type="submit">Create</button>
             </div>
         </div>
     </form>

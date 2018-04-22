@@ -66,9 +66,6 @@ namespace WeddingPlanner.Controllers{
                 }
                 int? UserId = HttpContext.Session.GetInt32("userid");
                 List<Wedding> AllWeddings = _context.Weddings.Include(Wedding=>Wedding.User).Where(Wedding=>Wedding.UserId == UserId).ToList();
-                if(AllWeddings.Count > 0){
-                    TempData["weddingcreated"] = "You have already created a Wedding for yourself.";
-                }
                 NewWedding.UserId = (int)UserId;
                 _context.Weddings.Add(NewWedding);
                 _context.SaveChanges();
@@ -77,13 +74,16 @@ namespace WeddingPlanner.Controllers{
                 int? WeddingId = HttpContext.Session.GetInt32("weddingid");
                 return RedirectToAction("DisplayGuestList", new{WeddingID = WeddingId});
             }
+            if(model.date < DateTime.Today){
+                TempData["InvalidDate"] = "Wedding Date Must be in the Future";
+            }
             return View("CreateWedding");
         }
         [HttpPost]
         [Route("/deletewedding")]
-        public IActionResult DeleteWedding(){
+        public IActionResult DeleteWedding(int weddingid){
             int? UserId = HttpContext.Session.GetInt32("userid");
-            Wedding Yourwedding = _context.Weddings.SingleOrDefault(Wedding=>Wedding.UserId == UserId);
+            Wedding Yourwedding = _context.Weddings.SingleOrDefault(x=>x.WeddingId == weddingid);
             _context.Weddings.Remove(Yourwedding);
             _context.SaveChanges();
             return RedirectToAction("DisplayDashboard");
@@ -104,7 +104,7 @@ namespace WeddingPlanner.Controllers{
         [Route("/unrsvp")]
         public IActionResult Unrsvp(int weddingid){
             int? UserId = HttpContext.Session.GetInt32("userid");
-            Guest Deleteguest = _context.Guests.SingleOrDefault(Guest=>Guest.UserId == UserId);
+            Guest Deleteguest = _context.Guests.Where(x=>x.WeddingId == weddingid).SingleOrDefault(Guest=>Guest.UserId == UserId);
             _context.Guests.Remove(Deleteguest);
             _context.SaveChanges();
             return RedirectToAction("DisplayDashboard");
