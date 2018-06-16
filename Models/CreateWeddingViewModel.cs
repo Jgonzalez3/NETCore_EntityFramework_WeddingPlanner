@@ -9,7 +9,7 @@ namespace WeddingPlanner.Models{
         [Required(ErrorMessage = "Wedder Two required")]
         public string weddertwo {get;set;}
         [Required(ErrorMessage = "Wedding Date required")]
-        public DateTime date {get;set;}
+        public DateTime? date {get;set;}
         [Required(ErrorMessage = "Wedding Address required")]
         public string address {get;set;}
     }
